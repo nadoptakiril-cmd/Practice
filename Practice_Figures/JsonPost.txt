@@ -1,0 +1,38 @@
+﻿{
+  "figure": {
+    "type_id": 1,
+    "brand_id": 1,
+    "theme_id": 1, 
+    "name": "Iron Man",
+    "height": 31,
+    "production_Year": 2019,
+    "price": 9000
+  },
+  "materialIds": [1, 2]
+}
+
+{
+  "figure": {
+    "type_id": 3,
+    "brand_id": 1,
+    "theme_id": 4, 
+    "name": "Gandalf the Grey",
+    "height": 35,
+    "production_Year": 2025,
+    "price": 33000
+  },
+  "materialIds": [1, 4]
+}
+
+{
+  "figure": {
+    "type_id": 2,
+    "brand_id": 2,
+    "theme_id": 5, 
+    "name": "Stormtrooper",
+    "height": 4,
+    "production_Year": 2023,
+    "price": 150
+  },
+  "materialIds": [1]
+}
