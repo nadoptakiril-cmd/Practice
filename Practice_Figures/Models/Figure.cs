@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 public class Figure
@@ -30,40 +29,4 @@ public class Figure
     public Themes? Theme { get; set; }
 
     public ICollection<Materials> Materials { get; set; } = new List<Materials>();
-}
-
-public class Materials
-{
-    public int Id { get; set; }
-    public string Name { get; set; } = string.Empty;
-
-    [JsonIgnore]
-    public ICollection<Figure> Figures { get; set; } = new List<Figure>();
-}
-
-public class Types
-{
-    public int Id { get; set; }
-    public string Name { get; set; } = string.Empty;
-
-    [JsonIgnore]
-    public ICollection<Figure> Figures { get; set; } = new List<Figure>();
-}
-
-public class Brands
-{
-    public int Id { get; set; }
-    public string Name { get; set; } = string.Empty;
-
-    [JsonIgnore]
-    public ICollection<Figure> Figures { get; set; } = new List<Figure>();
-}
-
-public class Themes
-{
-    public int Id { get; set; }
-    public string Name { get; set; } = string.Empty;
-
-    [JsonIgnore]
-    public ICollection<Figure> Figures { get; set; } = new List<Figure>();
 }

@@ -19,14 +19,6 @@ public class FiguresController : ControllerBase
     public async Task<ActionResult<IEnumerable<Figure>>> GetAll() =>
         await FiguresWithRelations.ToListAsync();
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<Figure>> GetById(int id)
-    {
-        var figure = await FiguresWithRelations.FirstOrDefaultAsync(f => f.Id == id);
-
-        return figure is null ? NotFound() : figure;
-    }
-
     [HttpPost]
     public async Task<ActionResult<Figure>> Create(FigureCreateDto dto)
     {
