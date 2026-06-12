@@ -7,4 +7,7 @@ public class Themes
 
     [JsonIgnore]
     public ICollection<Figure> Figures { get; set; } = new List<Figure>();
+
+    [JsonIgnore]
+    public ICollection<Series> Series { get; set; } = new List<Series>();
 }

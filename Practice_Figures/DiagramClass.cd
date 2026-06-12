@@ -1,39 +1,73 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="FiguresController">
-    <Position X="7.75" Y="0.75" Width="1.5" />
+    <Position X="3" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAAAAAAAAAABBAAAAAAAABACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAQAAAABAAAAAAAAAAAAIEAAEAAAgAAAAAAAAA=</HashCode>
       <FileName>Controllers\FiguresController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Figure">
-    <Position X="11.25" Y="0.75" Width="1.5" />
+  <Class Name="Brands">
+    <Position X="8.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AGACAAAABQACAAAQAAAAAAQAAAAAAIAgAYCAAAABAAA=</HashCode>
+      <HashCode>IAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Brands.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Figure">
+    <Position X="4.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IEACAAAABQABCAAQACEAAAQAAAAAABAgAQAAAAARAAE=</HashCode>
       <FileName>Models\Figure.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="FigureCreateDto">
+    <Position X="6.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAACAAAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FigureCreateDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Images">
+    <Position X="8.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACQAAAAAAAAAAAAAAAgAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Images.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Materials">
+    <Position X="10" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Materials.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Series">
+    <Position X="6.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAACAAAAAAABAAAQAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Series.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Themes">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Models\Themes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Types">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Types.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="AppDbContext">
-    <Position X="9.5" Y="0.75" Width="1.5" />
+    <Position X="1.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IkAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAABAAA=</HashCode>
+      <HashCode>IkAAAAAAAAAAAAAQAAAAAAAAEAAAABAAAAAAAAABAAE=</HashCode>
       <FileName>appDbContext.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Practice_Figures.Models.Figure_Theme">
-    <Position X="7.75" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\Theme.cs</FileName>
-      <NewMemberFileName>Models\Brand.cs</NewMemberFileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Practice_Figures.Models.Figure_Type">
-    <Position X="9.5" Y="3" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\Type.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

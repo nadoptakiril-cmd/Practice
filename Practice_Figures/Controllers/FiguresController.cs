@@ -13,6 +13,8 @@ public class FiguresController : ControllerBase
         .Include(f => f.Type)
         .Include(f => f.Brand)
         .Include(f => f.Theme)
+        .Include(f => f.Series)
+        .Include(f => f.Images)
         .Include(f => f.Materials);
 
     [HttpGet]
@@ -22,30 +24,20 @@ public class FiguresController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Figure>> Create(FigureCreateDto dto)
     {
-        var missing = new List<string>();
-
-        if (!await _context.Types.AnyAsync(t => t.Id == dto.Figure.TypeId))
-            missing.Add($"type_id={dto.Figure.TypeId}");
-
-        if (!await _context.Brands.AnyAsync(b => b.Id == dto.Figure.BrandId))
-            missing.Add($"brand_id={dto.Figure.BrandId}");
-
-        if (!await _context.Themes.AnyAsync(t => t.Id == dto.Figure.ThemeId))
-            missing.Add($"theme_id={dto.Figure.ThemeId}");
-
-        var materials = await _context.Materials
-            .Where(m => dto.MaterialIds.Contains(m.Id))
-            .ToListAsync();
-
-        var missingMaterialIds = dto.MaterialIds.Except(materials.Select(m => m.Id)).ToList();
-        if (missingMaterialIds.Count > 0)
-            missing.Add($"materialIds={string.Join(", ", missingMaterialIds)}");
+        var (missing, materials) = await ValidateDto(dto);
 
         if (missing.Count > 0)
             return BadRequest($"Not found: {string.Join("; ", missing)}");
 
         var figure = dto.Figure;
+        var now = DateTime.UtcNow;
+        figure.CreatedAt = now;
+        figure.UpdatedAt = now;
         figure.Materials = materials;
+        figure.Images = dto.ImageUrls
+            .Where(url => !string.IsNullOrWhiteSpace(url))
+            .Select(url => new Images { ImageUrl = url })
+            .ToList();
 
         _context.Figures.Add(figure);
         await _context.SaveChangesAsync();
@@ -54,14 +46,39 @@ public class FiguresController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, Figure figure)
+    public async Task<IActionResult> Update(int id, FigureCreateDto dto)
     {
-        if (id != figure.Id) return BadRequest();
+        var existingFigure = await _context.Figures
+            .Include(f => f.Materials)
+            .Include(f => f.Images)
+            .FirstOrDefaultAsync(f => f.Id == id);
 
-        var existingFigure = await _context.Figures.FindAsync(id);
         if (existingFigure is null) return NotFound();
 
-        _context.Entry(existingFigure).CurrentValues.SetValues(figure);
+        var (missing, materials) = await ValidateDto(dto);
+        if (missing.Count > 0)
+            return BadRequest($"Not found: {string.Join("; ", missing)}");
+
+        existingFigure.Name = dto.Figure.Name;
+        existingFigure.Height = dto.Figure.Height;
+        existingFigure.ReleaseYear = dto.Figure.ReleaseYear;
+        existingFigure.Price = dto.Figure.Price;
+        existingFigure.TypeId = dto.Figure.TypeId;
+        existingFigure.BrandId = dto.Figure.BrandId;
+        existingFigure.ThemeId = dto.Figure.ThemeId;
+        existingFigure.SeriesId = dto.Figure.SeriesId;
+        existingFigure.UpdatedAt = DateTime.UtcNow;
+
+        existingFigure.Materials.Clear();
+        foreach (var material in materials)
+            existingFigure.Materials.Add(material);
+
+        _context.Images.RemoveRange(existingFigure.Images);
+        existingFigure.Images = dto.ImageUrls
+            .Where(url => !string.IsNullOrWhiteSpace(url))
+            .Select(url => new Images { ImageUrl = url })
+            .ToList();
+
         await _context.SaveChangesAsync();
 
         return NoContent();
@@ -77,5 +94,37 @@ public class FiguresController : ControllerBase
         await _context.SaveChangesAsync();
 
         return NoContent();
+    }
+
+    private async Task<(List<string> Missing, List<Materials> Materials)> ValidateDto(FigureCreateDto dto)
+    {
+        var missing = new List<string>();
+
+        if (!await _context.Types.AnyAsync(t => t.Id == dto.Figure.TypeId))
+            missing.Add($"type_id={dto.Figure.TypeId}");
+
+        if (!await _context.Brands.AnyAsync(b => b.Id == dto.Figure.BrandId))
+            missing.Add($"brand_id={dto.Figure.BrandId}");
+
+        if (!await _context.Themes.AnyAsync(t => t.Id == dto.Figure.ThemeId))
+            missing.Add($"theme_id={dto.Figure.ThemeId}");
+
+        if (dto.Figure.SeriesId.HasValue &&
+            !await _context.Series.AnyAsync(s =>
+                s.Id == dto.Figure.SeriesId.Value &&
+                s.ThemeId == dto.Figure.ThemeId))
+        {
+            missing.Add($"series_id={dto.Figure.SeriesId} for theme_id={dto.Figure.ThemeId}");
+        }
+
+        var materials = await _context.Materials
+            .Where(m => dto.MaterialIds.Contains(m.Id))
+            .ToListAsync();
+
+        var missingMaterialIds = dto.MaterialIds.Except(materials.Select(m => m.Id)).ToList();
+        if (missingMaterialIds.Count > 0)
+            missing.Add($"materialIds={string.Join(", ", missingMaterialIds)}");
+
+        return (missing, materials);
     }
 }

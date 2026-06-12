@@ -1,38 +1,55 @@
-﻿{
+Type (1 Action Figure 2 Minifigure 3 Bust 4 Figure)
+Brands (1 Hot Toys 2 Lego 3 Dark Horse 4 Funko Pop)
+Theme (1 Marvel (1 Avengers: Infinity War 2 Avengers: Endgame 3 Spider-Man: No Way Home) 2 Star Wars (4-9) 3 Lord of the rings (10-13)
+Material (1 ABS plastic 2 3d plastic 3 Resin 4 Metal 5 Fabric)
+
+{
   "figure": {
     "type_id": 1,
     "brand_id": 1,
-    "theme_id": 1, 
+    "theme_id": 1,
+    "series_id": 2,
     "name": "Iron Man",
-    "height": 31,
-    "production_Year": 2019,
-    "price": 9000
+    "height": 28,
+    "release_year": 2019,
+    "price": 8000
   },
-  "materialIds": [1, 2]
+  "materialIds": [1, 4],
+  "imageUrls": [
+    "/images/figures/1.jpg"
+  ]
 }
 
 {
   "figure": {
     "type_id": 3,
-    "brand_id": 1,
-    "theme_id": 4, 
-    "name": "Gandalf the Grey",
-    "height": 35,
-    "production_Year": 2025,
-    "price": 33000
+    "brand_id": 3,
+    "theme_id": 3,
+    "series_id": 11,
+    "name": "Gandlaf the Grey",
+    "height": 28,
+    "release_year": 2018,
+    "price": 7000
   },
-  "materialIds": [1, 4]
+  "materialIds": [1, 5],
+  "imageUrls": [
+    "/images/figures/2.jpg"
+  ]
 }
 
 {
   "figure": {
     "type_id": 2,
     "brand_id": 2,
-    "theme_id": 5, 
-    "name": "Stormtrooper",
+    "theme_id": 2,
+    "series_id": 7,
+    "name": "Chancellor Palpatine",
     "height": 4,
-    "production_Year": 2023,
-    "price": 150
+    "release_year": 2024,
+    "price": 1200
   },
-  "materialIds": [1]
+  "materialIds": [1],
+  "imageUrls": [
+    "/images/figures/3.jpg"
+  ]
 }
