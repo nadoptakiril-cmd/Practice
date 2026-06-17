@@ -1,0 +1,34 @@
+using MediatR;
+using Practice_Figures.Application.Common.Interfaces;
+
+namespace Practice_Figures.Application.Figures.Commands;
+
+public record DeleteFigureCommand(int Id) : IRequest<bool>;
+
+public class DeleteFigureCommandHandler : IRequestHandler<DeleteFigureCommand, bool>
+{
+    private readonly IFigureRepository _figureRepository;
+    private readonly IUnitOfWork _unitOfWork;
+
+    public DeleteFigureCommandHandler(IFigureRepository figureRepository, IUnitOfWork unitOfWork)
+    {
+        _figureRepository = figureRepository;
+        _unitOfWork = unitOfWork;
+    }
+
+    public async Task<bool> Handle(DeleteFigureCommand request, CancellationToken cancellationToken)
+    {
+        var figure = await _figureRepository.GetByIdWithDetailsAsync(request.Id, cancellationToken);
+
+        if (figure is null)
+            return false;
+
+        figure.Materials.Clear();
+        _figureRepository.RemoveImages(figure.Images);
+        _figureRepository.Remove(figure);
+
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+        return true;
+    }
+}

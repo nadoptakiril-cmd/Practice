@@ -1,74 +1,172 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="FiguresController">
-    <Position X="3" Y="2.5" Width="1.5" />
+    <Position X="8.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAQAAAABAAAAAAAAAAAAIEAAEAAAgAAAAAAAAA=</HashCode>
-      <FileName>Controllers\FiguresController.cs</FileName>
+      <HashCode>AAQBAAAAAAAAAAAAAAAAAAAAAAEAAEAAAgAAAAAAAAA=</HashCode>
+      <FileName>API\Controllers\FiguresController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Brands">
-    <Position X="8.25" Y="4.5" Width="1.5" />
+  <Class Name="Brands" Collapsed="true">
+    <Position X="13.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\Brands.cs</FileName>
+      <FileName>Domain\Entities\Brands.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Figure">
-    <Position X="4.75" Y="2.5" Width="1.5" />
+  <Class Name="Figure" Collapsed="true">
+    <Position X="12" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IEACAAAABQABCAAQACEAAAQAAAAAABAgAQAAAAARAAE=</HashCode>
-      <FileName>Models\Figure.cs</FileName>
+      <FileName>Domain\Entities\Figure.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="FigureCreateDto">
-    <Position X="6.5" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAQAAAAAAAACAAAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\FigureCreateDto.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Images">
-    <Position X="8.25" Y="2.5" Width="1.5" />
+  <Class Name="Images" Collapsed="true">
+    <Position X="13.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACQAAAAAAAAAAAAAAAgAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\Images.cs</FileName>
+      <FileName>Domain\Entities\Images.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Materials">
-    <Position X="10" Y="4.5" Width="1.5" />
+  <Class Name="Materials" Collapsed="true">
+    <Position X="12" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\Materials.cs</FileName>
+      <FileName>Domain\Entities\Materials.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Series">
-    <Position X="6.5" Y="4.25" Width="1.5" />
+  <Class Name="Series" Collapsed="true">
+    <Position X="12" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAACAAAAAAABAAAQAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\Series.cs</FileName>
+      <FileName>Domain\Entities\Series.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Themes">
-    <Position X="10" Y="2.5" Width="1.5" />
+  <Class Name="Themes" Collapsed="true">
+    <Position X="12" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAE=</HashCode>
-      <FileName>Models\Themes.cs</FileName>
+      <FileName>Domain\Entities\Themes.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Types">
-    <Position X="11.75" Y="2.5" Width="1.5" />
+  <Class Name="Types" Collapsed="true">
+    <Position X="13.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\Types.cs</FileName>
+      <FileName>Domain\Entities\Types.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AppDbContext">
-    <Position X="1.25" Y="2.5" Width="1.5" />
+  <Class Name="AppDbContext" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IkAAAAAAAAAAAAAQAAAAAAAAEAAAABAAAAAAAAABAAE=</HashCode>
-      <FileName>appDbContext.cs</FileName>
+      <FileName>Infrastructure\Data\appDbContext.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Practice_Figures.Application.Figures.Commands.CreateFigureCommand" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAACAAAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Application\Figures\Commands\CreateFigureCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Practice_Figures.Application.Figures.Commands.CreateFigureCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Application\Figures\Commands\CreateFigureCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Practice_Figures.Application.Figures.Commands.DeleteFigureCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Application\Figures\Commands\DeleteFigureCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Practice_Figures.Application.Figures.Commands.UpdateFigureCommand" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACQAAAAAAAACAAAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Application\Figures\Commands\UpdateFigureCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Practice_Figures.Application.Figures.Commands.UpdateFigureCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Application\Figures\Commands\UpdateFigureCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Practice_Figures.Application.Figures.DTOs.FigureInputDto">
+    <Position X="2.25" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAABQABAAAAAAEAAAQAAAAAAAAgAAAAAAAQAAA=</HashCode>
+      <FileName>Application\Figures\DTOs\FigureInputDto.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Practice_Figures.Application.Figures.DTOs.FigureMapper">
+    <Position X="2.25" Y="8.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Application\Figures\DTOs\FigureMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Practice_Figures.Application.Figures.DTOs.FigureResponseDto">
+    <Position X="10.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IEACAAAABQABCAAQACEAAAQAAAAAABAgAQAAAAARAAE=</HashCode>
+      <FileName>Application\Figures\DTOs\FigureResponseDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Practice_Figures.Application.Figures.DTOs.LookupDto">
+    <Position X="2.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Application\Figures\DTOs\FigureResponseDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Practice_Figures.Application.Figures.DTOs.SeriesResponseDto">
+    <Position X="2.25" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Application\Figures\DTOs\FigureResponseDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Practice_Figures.Application.Figures.DTOs.ImageResponseDto">
+    <Position X="2.25" Y="6.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACQAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Application\Figures\DTOs\FigureResponseDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Practice_Figures.Application.Figures.Queries.GetFiguresQueryHandler" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Application\Figures\Queries\GetFiguresQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Practice_Figures.Application.Figures.Validators.FigureValidator">
+    <Position X="6.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Application\Figures\Validators\FigureValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Practice_Figures.Application.Common.Interfaces.IAppDbContext">
+    <Position X="4.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IkAAAAAAAAAAAEAQAAAAAAAAAAAAABAAAAAAAAABAAE=</HashCode>
+      <FileName>Application\Common\Interfaces\IAppDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

@@ -1,6 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using Practice_Figures.Application.Common.Interfaces;
+using Practice_Figures.Domain.Entities;
 
-public class AppDbContext : DbContext
+namespace Practice_Figures.Infrastructure.Data;
+
+public class AppDbContext : DbContext, IUnitOfWork
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
@@ -16,6 +20,27 @@ public class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Figure>(entity =>
+        {
+            entity.Property(f => f.ReleaseYear).HasColumnName("release_year");
+            entity.Property(f => f.CreatedAt).HasColumnName("created_at");
+            entity.Property(f => f.UpdatedAt).HasColumnName("updated_at");
+            entity.Property(f => f.TypeId).HasColumnName("type_id");
+            entity.Property(f => f.BrandId).HasColumnName("brand_id");
+            entity.Property(f => f.ThemeId).HasColumnName("theme_id");
+            entity.Property(f => f.SeriesId).HasColumnName("series_id");
+        });
+
+        modelBuilder.Entity<Series>()
+            .Property(s => s.ThemeId)
+            .HasColumnName("theme_id");
+
+        modelBuilder.Entity<Images>(entity =>
+        {
+            entity.Property(i => i.FigureId).HasColumnName("figure_id");
+            entity.Property(i => i.ImageUrl).HasColumnName("image_url");
+        });
+
         modelBuilder.Entity<Images>()
             .HasOne(i => i.Figure)
             .WithMany(f => f.Images)

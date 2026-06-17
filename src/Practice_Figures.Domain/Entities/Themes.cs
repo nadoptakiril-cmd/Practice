@@ -1,10 +1,9 @@
-using System.Text.Json.Serialization;
+namespace Practice_Figures.Domain.Entities;
 
-public class Types
+public class Themes
 {
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
-
-    [JsonIgnore]
     public ICollection<Figure> Figures { get; set; } = new List<Figure>();
+    public ICollection<Series> Series { get; set; } = new List<Series>();
 }
