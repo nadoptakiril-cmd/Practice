@@ -5,36 +5,36 @@ using Practice_Figures.Infrastructure.Data;
 
 namespace Practice_Figures.Infrastructure.Repositories;
 
-public class LookupRepository : ILookupRepository
+public class FigureReferenceRepository : IFigureReferenceRepository
 {
     private readonly AppDbContext _context;
 
-    public LookupRepository(AppDbContext context)
+    public FigureReferenceRepository(AppDbContext context)
     {
         _context = context;
     }
 
-    public Task<bool> TypeExistsAsync(int id, CancellationToken cancellationToken)
+    public Task<Types?> GetTypeByIdAsync(int id, CancellationToken cancellationToken)
     {
-        return _context.Types.AnyAsync(type => type.Id == id, cancellationToken);
+        return _context.Types.FirstOrDefaultAsync(type => type.Id == id, cancellationToken);
     }
 
-    public Task<bool> BrandExistsAsync(int id, CancellationToken cancellationToken)
+    public Task<Brands?> GetBrandByIdAsync(int id, CancellationToken cancellationToken)
     {
-        return _context.Brands.AnyAsync(brand => brand.Id == id, cancellationToken);
+        return _context.Brands.FirstOrDefaultAsync(brand => brand.Id == id, cancellationToken);
     }
 
-    public Task<bool> ThemeExistsAsync(int id, CancellationToken cancellationToken)
+    public Task<Themes?> GetThemeByIdAsync(int id, CancellationToken cancellationToken)
     {
-        return _context.Themes.AnyAsync(theme => theme.Id == id, cancellationToken);
+        return _context.Themes.FirstOrDefaultAsync(theme => theme.Id == id, cancellationToken);
     }
 
-    public Task<bool> SeriesBelongsToThemeAsync(
+    public Task<Series?> GetSeriesByIdAndThemeIdAsync(
         int seriesId,
         int themeId,
         CancellationToken cancellationToken)
     {
-        return _context.Series.AnyAsync(
+        return _context.Series.FirstOrDefaultAsync(
             series => series.Id == seriesId && series.ThemeId == themeId,
             cancellationToken);
     }

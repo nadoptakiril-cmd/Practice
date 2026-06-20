@@ -1,48 +1,56 @@
 using Practice_Figures.Application.Common.Interfaces;
-using Practice_Figures.Domain.Entities;
 
 namespace Practice_Figures.Application.Figures.Validators;
 
-public static class FigureValidator
+public class FigureValidator : IFigureValidator
 {
-    public static async Task<(List<string> Missing, List<Materials> Materials)> ValidateAsync(
-        ILookupRepository lookupRepository,
-        int typeId,
-        int brandId,
-        int themeId,
-        int? seriesId,
-        List<int> materialIds,
+    private readonly IFigureReferenceRepository _figureReferenceRepository;
+
+    public FigureValidator(IFigureReferenceRepository figureReferenceRepository)
+    {
+        _figureReferenceRepository = figureReferenceRepository;
+    }
+
+    public async Task<List<string>> ValidateAsync(
+        IFigureMutationCommand command,
         CancellationToken cancellationToken)
     {
         var missing = new List<string>();
 
-        if (!await lookupRepository.TypeExistsAsync(typeId, cancellationToken))
-            missing.Add($"type_id={typeId}");
+        var type = await _figureReferenceRepository.GetTypeByIdAsync(command.TypeId, cancellationToken);
+        if (type is null)
+            missing.Add($"type_id={command.TypeId}");
 
-        if (!await lookupRepository.BrandExistsAsync(brandId, cancellationToken))
-            missing.Add($"brand_id={brandId}");
+        var brand = await _figureReferenceRepository.GetBrandByIdAsync(command.BrandId, cancellationToken);
+        if (brand is null)
+            missing.Add($"brand_id={command.BrandId}");
 
-        if (!await lookupRepository.ThemeExistsAsync(themeId, cancellationToken))
-            missing.Add($"theme_id={themeId}");
+        var theme = await _figureReferenceRepository.GetThemeByIdAsync(command.ThemeId, cancellationToken);
+        if (theme is null)
+            missing.Add($"theme_id={command.ThemeId}");
 
-        if (seriesId.HasValue &&
-            !await lookupRepository.SeriesBelongsToThemeAsync(
-                seriesId.Value,
-                themeId,
-                cancellationToken))
+        if (command.SeriesId.HasValue)
         {
-            missing.Add($"series_id={seriesId} for theme_id={themeId}");
+            var series = await _figureReferenceRepository.GetSeriesByIdAndThemeIdAsync(
+                command.SeriesId.Value,
+                command.ThemeId,
+                cancellationToken);
+
+            if (series is null)
+                missing.Add($"series_id={command.SeriesId} for theme_id={command.ThemeId}");
         }
 
-        var materials = await lookupRepository.GetMaterialsByIdsAsync(materialIds, cancellationToken);
+        var existingMaterials = await _figureReferenceRepository.GetMaterialsByIdsAsync(
+            command.MaterialIds,
+            cancellationToken);
 
-        var missingMaterialIds = materialIds
-            .Except(materials.Select(m => m.Id))
+        var missingMaterialIds = command.MaterialIds
+            .Except(existingMaterials.Select(material => material.Id))
             .ToList();
 
         if (missingMaterialIds.Count > 0)
             missing.Add($"materialIds={string.Join(", ", missingMaterialIds)}");
 
-        return (missing, materials);
+        return missing;
     }
 }

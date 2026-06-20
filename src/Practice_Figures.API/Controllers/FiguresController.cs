@@ -29,45 +29,38 @@ public class FiguresController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<FigureResponseDto>> Create(FigureMutationRequest request)
     {
-        try
-        {
-            var command = request.ToCreateCommand();
-            var figure = await _mediator.Send(command);
+        var command = request.ToCreateCommand();
+        var result = await _mediator.Send(command);
 
-            return Ok(figure);
-        }
-        catch (ArgumentException ex)
+        if (result.Status == FigureCommandStatus.ValidationFailed)
         {
-            return BadRequest(ex.Message);
+            return BadRequest($"Not found: {string.Join("; ", result.Errors)}");
         }
+
+        return Ok(result.Figure);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, FigureMutationRequest request)
+    public async Task<ActionResult<FigureResponseDto>> Update(int id, FigureMutationRequest request)
     {
-        try
-        {
-            var command = request.ToUpdateCommand(id);
-            var updated = await _mediator.Send(command);
+        var command = request.ToUpdateCommand(id);
+        var result = await _mediator.Send(command);
 
-            if (!updated)
-                return NotFound();
+        if (result.Status == FigureCommandStatus.NotFound)
+            return NotFound();
 
-            return NoContent();
-        }
-        catch (ArgumentException ex)
+        if (result.Status == FigureCommandStatus.ValidationFailed)
         {
-            return BadRequest(ex.Message);
+            return BadRequest($"Not found: {string.Join("; ", result.Errors)}");
         }
+
+        return Ok(result.Figure);
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        var deleted = await _mediator.Send(new DeleteFigureCommand(id));
-
-        if (!deleted)
-            return NotFound();
+        await _mediator.Send(new DeleteFigureCommand(id));
 
         return NoContent();
     }

@@ -3,9 +3,9 @@ using Practice_Figures.Application.Common.Interfaces;
 
 namespace Practice_Figures.Application.Figures.Commands;
 
-public record DeleteFigureCommand(int Id) : IRequest<bool>;
+public record DeleteFigureCommand(int Id) : IRequest;
 
-public class DeleteFigureCommandHandler : IRequestHandler<DeleteFigureCommand, bool>
+public class DeleteFigureCommandHandler : IRequestHandler<DeleteFigureCommand>
 {
     private readonly IFigureRepository _figureRepository;
     private readonly IUnitOfWork _unitOfWork;
@@ -16,19 +16,17 @@ public class DeleteFigureCommandHandler : IRequestHandler<DeleteFigureCommand, b
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<bool> Handle(DeleteFigureCommand request, CancellationToken cancellationToken)
+    public async Task Handle(DeleteFigureCommand request, CancellationToken cancellationToken)
     {
         var figure = await _figureRepository.GetByIdWithDetailsAsync(request.Id, cancellationToken);
 
         if (figure is null)
-            return false;
+            return;
 
         figure.Materials.Clear();
         _figureRepository.RemoveImages(figure.Images);
         _figureRepository.Remove(figure);
 
         await _unitOfWork.SaveChangesAsync(cancellationToken);
-
-        return true;
     }
 }

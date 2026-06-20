@@ -1,12 +1,11 @@
 using MediatR;
 using Practice_Figures.Application.Common.Interfaces;
 using Practice_Figures.Application.Figures.DTOs;
-using Practice_Figures.Application.Figures.Validators;
 using Practice_Figures.Domain.Entities;
 
 namespace Practice_Figures.Application.Figures.Commands;
 
-public class UpdateFigureCommand : IRequest<bool>
+public class UpdateFigureCommand : IRequest<FigureCommandResult>, IFigureMutationCommand
 {
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
@@ -21,40 +20,32 @@ public class UpdateFigureCommand : IRequest<bool>
     public List<string> ImageUrls { get; set; } = new();
 }
 
-public class UpdateFigureCommandHandler : IRequestHandler<UpdateFigureCommand, bool>
+public class UpdateFigureCommandHandler : IRequestHandler<UpdateFigureCommand, FigureCommandResult>
 {
     private readonly IFigureRepository _figureRepository;
-    private readonly ILookupRepository _lookupRepository;
+    private readonly IFigureReferenceRepository _figureReferenceRepository;
     private readonly IUnitOfWork _unitOfWork;
 
     public UpdateFigureCommandHandler(
         IFigureRepository figureRepository,
-        ILookupRepository lookupRepository,
+        IFigureReferenceRepository figureReferenceRepository,
         IUnitOfWork unitOfWork)
     {
         _figureRepository = figureRepository;
-        _lookupRepository = lookupRepository;
+        _figureReferenceRepository = figureReferenceRepository;
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<bool> Handle(UpdateFigureCommand request, CancellationToken cancellationToken)
+    public async Task<FigureCommandResult> Handle(UpdateFigureCommand request, CancellationToken cancellationToken)
     {
         var existingFigure = await _figureRepository.GetByIdWithDetailsAsync(request.Id, cancellationToken);
 
         if (existingFigure is null)
-            return false;
+            return FigureCommandResult.NotFound();
 
-        var (missing, materials) = await FigureValidator.ValidateAsync(
-            _lookupRepository,
-            request.TypeId,
-            request.BrandId,
-            request.ThemeId,
-            request.SeriesId,
+        var materials = await _figureReferenceRepository.GetMaterialsByIdsAsync(
             request.MaterialIds,
             cancellationToken);
-
-        if (missing.Count > 0)
-            throw new ArgumentException($"Not found: {string.Join("; ", missing)}");
 
         existingFigure.Name = request.Name;
         existingFigure.Height = request.Height;
@@ -64,7 +55,6 @@ public class UpdateFigureCommandHandler : IRequestHandler<UpdateFigureCommand, b
         existingFigure.BrandId = request.BrandId;
         existingFigure.ThemeId = request.ThemeId;
         existingFigure.SeriesId = request.SeriesId;
-        existingFigure.UpdatedAt = DateTime.UtcNow;
 
         existingFigure.Materials.Clear();
         foreach (var material in materials)
@@ -78,6 +68,6 @@ public class UpdateFigureCommandHandler : IRequestHandler<UpdateFigureCommand, b
 
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-        return true;
+        return FigureCommandResult.Success(existingFigure.ToResponseDto());
     }
 }

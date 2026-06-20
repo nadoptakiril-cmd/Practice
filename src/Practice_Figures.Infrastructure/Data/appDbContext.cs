@@ -23,8 +23,14 @@ public class AppDbContext : DbContext, IUnitOfWork
         modelBuilder.Entity<Figure>(entity =>
         {
             entity.Property(f => f.ReleaseYear).HasColumnName("release_year");
-            entity.Property(f => f.CreatedAt).HasColumnName("created_at");
-            entity.Property(f => f.UpdatedAt).HasColumnName("updated_at");
+            entity.Property(f => f.CreatedAt)
+                .HasColumnName("created_at")
+                .HasDefaultValueSql("SYSUTCDATETIME()")
+                .ValueGeneratedOnAdd();
+            entity.Property(f => f.UpdatedAt)
+                .HasColumnName("updated_at")
+                .HasDefaultValueSql("SYSUTCDATETIME()")
+                .ValueGeneratedOnAddOrUpdate();
             entity.Property(f => f.TypeId).HasColumnName("type_id");
             entity.Property(f => f.BrandId).HasColumnName("brand_id");
             entity.Property(f => f.ThemeId).HasColumnName("theme_id");

@@ -1,6 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using MediatR;
+using Practice_Figures.Application.Common.Behaviors;
 using Practice_Figures.Application.Common.Interfaces;
 using Practice_Figures.Application.Figures.Queries;
+using Practice_Figures.Application.Figures.Validators;
 using Practice_Figures.Infrastructure.Data;
 using Practice_Figures.Infrastructure.Repositories;
 using System.Text.Json;
@@ -17,7 +20,9 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddScoped<IUnitOfWork>(provider => provider.GetRequiredService<AppDbContext>());
 builder.Services.AddScoped<IFigureRepository, FigureRepository>();
-builder.Services.AddScoped<ILookupRepository, LookupRepository>();
+builder.Services.AddScoped<IFigureReferenceRepository, FigureReferenceRepository>();
+builder.Services.AddScoped<IFigureValidator, FigureValidator>();
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(FigureValidationBehavior<,>));
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
