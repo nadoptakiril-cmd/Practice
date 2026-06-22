@@ -7,4 +7,7 @@
     <Project Path="src/Practice_Figures.Domain/Practice_Figures.Domain.csproj" />
     <Project Path="src/Practice_Figures.Infrastructure/Practice_Figures.Infrastructure.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Practice_Figures.Tests/Practice_Figures.Tests.csproj" />
+  </Folder>
 </Solution>

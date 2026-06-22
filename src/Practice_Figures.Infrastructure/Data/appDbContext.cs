@@ -22,6 +22,8 @@ public class AppDbContext : DbContext, IUnitOfWork
     {
         modelBuilder.Entity<Figure>(entity =>
         {
+            entity.ToTable(table => table.HasTrigger("TR_Figures_SetUpdatedAt"));
+
             entity.Property(f => f.ReleaseYear).HasColumnName("release_year");
             entity.Property(f => f.CreatedAt)
                 .HasColumnName("created_at")

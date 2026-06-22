@@ -2,7 +2,7 @@ using Practice_Figures.Application.Common.Interfaces;
 
 namespace Practice_Figures.Application.Figures.Validators;
 
-public class FigureValidator : IFigureValidator
+public class FigureValidator
 {
     private readonly IFigureReferenceRepository _figureReferenceRepository;
 
@@ -11,9 +11,7 @@ public class FigureValidator : IFigureValidator
         _figureReferenceRepository = figureReferenceRepository;
     }
 
-    public async Task<List<string>> ValidateAsync(
-        IFigureMutationCommand command,
-        CancellationToken cancellationToken)
+    public async Task<List<string>> ValidateAsync(IFigureMutationCommand command, CancellationToken cancellationToken)
     {
         var missing = new List<string>();
 

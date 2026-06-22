@@ -21,7 +21,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(conn
 builder.Services.AddScoped<IUnitOfWork>(provider => provider.GetRequiredService<AppDbContext>());
 builder.Services.AddScoped<IFigureRepository, FigureRepository>();
 builder.Services.AddScoped<IFigureReferenceRepository, FigureReferenceRepository>();
-builder.Services.AddScoped<IFigureValidator, FigureValidator>();
+builder.Services.AddScoped<FigureValidator>();
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(FigureValidationBehavior<,>));
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers()

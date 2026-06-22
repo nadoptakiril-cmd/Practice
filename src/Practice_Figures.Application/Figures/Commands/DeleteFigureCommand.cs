@@ -23,8 +23,6 @@ public class DeleteFigureCommandHandler : IRequestHandler<DeleteFigureCommand>
         if (figure is null)
             return;
 
-        figure.Materials.Clear();
-        _figureRepository.RemoveImages(figure.Images);
         _figureRepository.Remove(figure);
 
         await _unitOfWork.SaveChangesAsync(cancellationToken);
