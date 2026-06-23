@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Practice_Figures.Application.Common.Interfaces;
-using Practice_Figures.Domain.Entities;
+using Practice_Figures.Core.Entities;
+using Practice_Figures.Core.Interfaces;
 
 namespace Practice_Figures.Infrastructure.Data;
 
@@ -37,6 +37,7 @@ public class AppDbContext : DbContext, IUnitOfWork
             entity.Property(f => f.BrandId).HasColumnName("brand_id");
             entity.Property(f => f.ThemeId).HasColumnName("theme_id");
             entity.Property(f => f.SeriesId).HasColumnName("series_id");
+            entity.Property(f => f.IsDeleted).HasColumnName("is_deleted");
         });
 
         modelBuilder.Entity<Series>()

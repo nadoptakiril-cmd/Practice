@@ -1,5 +1,5 @@
 using MediatR;
-using Practice_Figures.Application.Common.Interfaces;
+using Practice_Figures.Core.Interfaces;
 
 namespace Practice_Figures.Application.Figures.Commands;
 
@@ -23,8 +23,7 @@ public class DeleteFigureCommandHandler : IRequestHandler<DeleteFigureCommand>
         if (figure is null)
             return;
 
-        _figureRepository.Remove(figure);
-
+        figure.IsDeleted = true;
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }

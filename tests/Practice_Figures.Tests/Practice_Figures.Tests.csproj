@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Practice_Figures.Application\Practice_Figures.Application.csproj" />
-    <ProjectReference Include="..\..\src\Practice_Figures.Domain\Practice_Figures.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Practice_Figures.Core\Practice_Figures.Core.csproj" />
   </ItemGroup>
 
 </Project>

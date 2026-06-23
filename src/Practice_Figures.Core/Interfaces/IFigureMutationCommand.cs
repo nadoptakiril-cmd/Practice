@@ -1,4 +1,4 @@
-namespace Practice_Figures.Application.Common.Interfaces;
+namespace Practice_Figures.Core.Interfaces;
 
 public interface IFigureMutationCommand
 {

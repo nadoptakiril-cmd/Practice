@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\Practice_Figures.Domain\Practice_Figures.Domain.csproj" />
+    <ProjectReference Include="..\Practice_Figures.Core\Practice_Figures.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

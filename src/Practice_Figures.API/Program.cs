@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using MediatR;
 using Practice_Figures.Application.Common.Behaviors;
-using Practice_Figures.Application.Common.Interfaces;
 using Practice_Figures.Application.Figures.Queries;
 using Practice_Figures.Application.Figures.Validators;
+using Practice_Figures.Core.Interfaces;
 using Practice_Figures.Infrastructure.Data;
 using Practice_Figures.Infrastructure.Repositories;
 using System.Text.Json;

@@ -1,6 +1,6 @@
-using Practice_Figures.Domain.Entities;
+using Practice_Figures.Core.Entities;
 
-namespace Practice_Figures.Application.Common.Interfaces;
+namespace Practice_Figures.Core.Interfaces;
 
 public interface IFigureReferenceRepository
 {

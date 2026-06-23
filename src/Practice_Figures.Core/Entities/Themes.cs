@@ -1,12 +1,9 @@
-namespace Practice_Figures.Domain.Entities;
+namespace Practice_Figures.Core.Entities;
 
-public class Series
+public class Themes
 {
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
-
-    public int ThemeId { get; set; }
-    public Themes? Theme { get; set; }
-
     public ICollection<Figure> Figures { get; set; } = new List<Figure>();
+    public ICollection<Series> Series { get; set; } = new List<Series>();
 }

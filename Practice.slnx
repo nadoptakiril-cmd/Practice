@@ -1,10 +1,8 @@
 <Solution>
   <Folder Name="/src/">
-    <File Path="src/Practice_Figures.Application/DiagramClass.cd" />
-    <File Path="src/Practice_Figures.Application/JsonPost.txt" />
     <Project Path="src/Practice_Figures.API/Practice_Figures.API.csproj" />
     <Project Path="src/Practice_Figures.Application/Practice_Figures.Application.csproj" />
-    <Project Path="src/Practice_Figures.Domain/Practice_Figures.Domain.csproj" />
+    <Project Path="src/Practice_Figures.Core/Practice_Figures.Core.csproj" />
     <Project Path="src/Practice_Figures.Infrastructure/Practice_Figures.Infrastructure.csproj" />
   </Folder>
   <Folder Name="/tests/">

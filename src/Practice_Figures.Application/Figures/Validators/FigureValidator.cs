@@ -1,4 +1,4 @@
-using Practice_Figures.Application.Common.Interfaces;
+using Practice_Figures.Core.Interfaces;
 
 namespace Practice_Figures.Application.Figures.Validators;
 

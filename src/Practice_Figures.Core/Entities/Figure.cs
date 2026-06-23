@@ -1,4 +1,4 @@
-namespace Practice_Figures.Domain.Entities;
+namespace Practice_Figures.Core.Entities;
 
 public class Figure
 {
@@ -24,4 +24,6 @@ public class Figure
 
     public ICollection<Materials> Materials { get; set; } = new List<Materials>();
     public ICollection<Images> Images { get; set; } = new List<Images>();
+
+    public bool IsDeleted { get; set; }
 }

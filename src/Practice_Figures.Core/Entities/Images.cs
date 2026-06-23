@@ -1,4 +1,4 @@
-namespace Practice_Figures.Domain.Entities;
+namespace Practice_Figures.Core.Entities;
 
 public class Images
 {

@@ -1,6 +1,6 @@
-namespace Practice_Figures.Domain.Entities;
+namespace Practice_Figures.Core.Entities;
 
-public class Brands
+public class Types
 {
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;

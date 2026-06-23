@@ -1,8 +1,8 @@
 using Moq;
-using Practice_Figures.Application.Common.Interfaces;
 using Practice_Figures.Application.Figures.Commands;
 using Practice_Figures.Application.Figures.DTOs;
-using Practice_Figures.Domain.Entities;
+using Practice_Figures.Core.Entities;
+using Practice_Figures.Core.Interfaces;
 
 namespace Practice_Figures.Tests;
 
